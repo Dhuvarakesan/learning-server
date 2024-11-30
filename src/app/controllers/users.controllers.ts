@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import User from '../models/users.modles';
 
@@ -89,30 +88,3 @@ export const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-// Authenticate a user
-export const authenticateUser = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
-
-    // Find the user by email
-    const user = await User.findOne({ email });
-    if (!user) {
-      throw new CustomError("Invalid email or password.", 401, "AUTHENTICATION_FAILED", "The email or password is incorrect.");
-    }
-
-    // Compare the provided password with the stored hashed password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      throw new CustomError("Invalid email or password.", 401, "AUTHENTICATION_FAILED", "The email or password is incorrect.");
-    }
-
-    res.status(200).json({
-      status: "success",
-      code: "200",
-      message: "User authenticated successfully.",
-      data: { id: user._id, email: user.email, role: user.role },
-    });
-  } catch (error) {
-    handleError(res, error);
-  }
-};
