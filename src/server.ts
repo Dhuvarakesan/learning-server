@@ -29,17 +29,20 @@ app.use('/api', protect, userRoutes);
 // Root route
 app.get("/", (req: Request, res: Response) => {
   res.send(`
-    <pre>
-    🎉 Welcome to the Node.js Express MongoDB API! 🎉
-    --------------------------------------------
-    🚀 The server is up and running smoothly!
-    🌐 Current Status: ONLINE
-    🟢 Port: ${port}
-    📅 Timestamp: ${new Date().toISOString()}
-    --------------------------------------------
-    Thank you for using our service! 😊
-    Happy coding! ✨
-    </pre>
+  
+    <div style="display: flex; justify-content: center; align-items: center; height:100%; text-align: center; font-family: Arial, sans-serif; background-color: #f8f9fa;">
+      <pre style="font-size: 18px; font-weight: bold; color: #333; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+🎉 Welcome to the Node.js Express MongoDB API! 🎉
+--------------------------------------------
+🚀 The server is up and running smoothly!
+🌐 Current Status: ONLINE
+🟢 Port: ${port}
+--------------------------------------------
+Thank you for using our service! 😊
+Happy coding! ✨
+      </pre>
+    </div>
+   
   `);
 });
 
@@ -60,7 +63,5 @@ app.listen(port, () => {
   console.log(`
     🎉 **Welcome to the My Express Server!** 🎉
     --------------------------------------------
-    🌟 **Server Name**: My Express Server
-    🚀 **Status**: Server is up and running smoothly!
-    📅 **Timestamp**: ${new Date().toISOString()}`);
+    🚀 **Status**: Server is up and running smoothly!`)
   });    
